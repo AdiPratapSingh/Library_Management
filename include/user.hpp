@@ -1,26 +1,13 @@
 #include <bits/stdc++.h>
+#include <book.hpp>
 #include <ctime>
 #include <chrono>
 
 using namespace std;
 
-class Book{
-    public:
-        string Title;
-        string Author;
-        string ISBN;
-        string Publication;
-        chrono::system_clock duedate;
-        bool isBooked;
-        void Show_duedate(chrono::system_clock & duedate);
-};
-
-class BookDb{
-    public:
-        vector<Book> list; 
-        void Add();
-        void Delete();
-        void Search();
+class UserDb{
+    vector<Student> StudentList;
+    vector<Professor> ProfList;
 };
 
 class User{
@@ -34,7 +21,7 @@ class User{
 
 class Student:public User{
     public:
-        void Calculate_fine(int &Fine,vector<pair<Book,chrono::system_clock>> &list);
+        void Calculate_fine();
         void Clear_fine_amount(int &Fine);
 };
 
@@ -49,8 +36,4 @@ class Librarian:public User{
         void Delete(UserDb &database);
         void Add(UserDb &database);
         // Need to add more functionality
-};
-
-class UserDb{
-    vector<User> list;
 };
