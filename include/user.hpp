@@ -7,7 +7,16 @@ using namespace std;
 
 class UserDb{
     vector<Student> StudentList;
-    vector<Professor> ProfList;
+    vector<Professor> ProfessorList;
+
+    void FindStudent();        // Done
+    void FindProfessor();      // Done
+
+    void DeleteStudent();      // Done
+    void DeleteProfessor();    // Done
+
+    void AddStudent();      
+    void AddProfessor();
 };
 
 class User{
@@ -16,24 +25,24 @@ class User{
         string Name;
         string Password;
         int Fine;
-        vector<pair<Book,chrono::system_clock>> list;    
+        time_t calc;
+        vector<pair<Book,time_t>> list;    
 };
 
 class Student:public User{
     public:
-        void Calculate_fine();
-        void Clear_fine_amount(int &Fine);
+        int Calculate_fine(time_t t);
+        void Clear_fine_amount();
 };
 
 class Professor:public User{
     public:
-        void Calculate_fine(int &Fine,vector<pair<Book,chrono::system_clock>> &list);
-        void Clear_fine_amount(int &Fine);
+        int Calculate_fine(time_t t);
+        void Clear_fine_amount();
 };
 
 class Librarian:public User{
     public:
-        void Delete(UserDb &database);
-        void Add(UserDb &database);
+        
         // Need to add more functionality
 };

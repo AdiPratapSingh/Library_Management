@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include <library.hpp>
+#include <book.hpp>
 #include <ctime>
 #include <chrono>
 
@@ -15,6 +15,14 @@ void Book::Show_duedate(){
     cout<<"\n\n";
     cout<<"=======================================================================\n\n\n";
 };
+
+Book::Book(string Title1, string Author1, string ISBN1, string Publication1){
+    Title = Title1;
+    Author = Author1;
+    ISBN = ISBN1;
+    Publication = Publication1;
+    isBooked = false;
+}
 
 void BookDb::Add(){
     Book book;
@@ -34,8 +42,7 @@ void BookDb::Add(){
     list.push_back(book);
 }
 
-void BookDb::Delete(){
-    
+void BookDb::Delete(){   
     int flag,found;
     found = 0;
     string str;
@@ -82,7 +89,7 @@ void BookDb::Delete(){
         }
 
         if(found){
-            cout<<"The book has been deleted!"<<endl;
+            cout<<"The book has been deleted!\n"<<endl;
             cout<<"\n\n";
             return;
         }

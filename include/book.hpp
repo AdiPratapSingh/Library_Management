@@ -3,16 +3,17 @@
 #include <chrono>
 
 using namespace std;
-
 class Book{
     public:
+        Book();
+        Book(string Title, string Author, string ISBN, string Publication);
         string Title;
         string Author;
         string ISBN;
         string Publication;
-        chrono::system_clock duedate;
+        time_t duedate;
         bool isBooked;
-        void Show_duedate(); // Done
+        void Show_duedate(); //  not Done
 };
 
 class BookDb{
