@@ -8,15 +8,18 @@ using namespace std;
 class UserDb{
     vector<Student> StudentList;
     vector<Professor> ProfessorList;
+    vector<Librarian> LibrarianList;
 
     void FindStudent();        // Done
     void FindProfessor();      // Done
 
     void DeleteStudent();      // Done
     void DeleteProfessor();    // Done
+    void DeleteLibrarian();    // Done
 
-    void AddStudent();      
-    void AddProfessor();
+    void AddStudent();         // Done
+    void AddProfessor();       // Done
+    void AddLibrarian();       // Done
 };
 
 class User{
@@ -31,18 +34,17 @@ class User{
 
 class Student:public User{
     public:
-        int Calculate_fine(time_t t);
-        void Clear_fine_amount();
+        int Calculate_fine(time_t t);        // Done 
+        void Clear_fine_amount();            // Done
 };
 
 class Professor:public User{
     public:
-        int Calculate_fine(time_t t);
-        void Clear_fine_amount();
+        int Calculate_fine(time_t t);        // Done
+        void Clear_fine_amount();            // Done
 };
 
 class Librarian:public User{
     public:
         
-        // Need to add more functionality
 };

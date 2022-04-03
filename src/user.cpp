@@ -107,6 +107,10 @@ void UserDb::FindStudent(){
                 }
             }
         }
+        else if(flag==3){
+            cout<<"Aborted!\n\n";
+            return;
+        }
 
         if(found){
             return;
@@ -190,6 +194,10 @@ void UserDb::FindProfessor(){
                 }
             }
         }
+        else if(flag==3){
+            cout<<"Aborted!\n\n";
+            return;
+        }
 
         if(found){
             return;
@@ -244,6 +252,7 @@ void UserDb::DeleteStudent(){
             }
         }
         else if(flag==3){
+            cout<<"Aborted!\n\n";
             return;
         }
 
@@ -302,6 +311,7 @@ void UserDb::DeleteProfessor(){
             }
         }
         else if(flag==3){
+            cout<<"Aborted!\n\n";
             return;
         }
 
@@ -312,6 +322,65 @@ void UserDb::DeleteProfessor(){
         }
         else{
             cout<<"Professor not found, please recheck the entered value!\n\n";
+        }
+        cout<<"=======================================================================\n\n";
+    }
+}
+
+void UserDb::DeleteLibrarian(){   
+    int flag,found;
+    found = 0;
+    string str;
+
+    while(!found){
+        cout<<"Press 1 if you want to delete using name of the Librarian.\nPress 2 if you want to delete using Username of Librarian.\nPress 3 if you want to abort the process"<<endl;
+        cin>>flag;
+        cout<<"\n\n";
+
+        while(flag!=1&&flag!=2&&flag!=3){
+            cout<<"Please provide a valid input : ";
+            cin>>flag;
+            cout<<"\n\n";
+        }
+
+        if(flag == 1){
+            cout<<"Enter the Name of the Librarian who you want to delete :"<<endl;
+            getline(cin, str);
+            cout<<"\n\n";
+
+            for(int i=0;i<LibrarianList.size();i++){
+                if(LibrarianList[i].Name == str){
+                    LibrarianList.erase(LibrarianList.begin()+i);
+                    found = 1;
+                    break;
+                }
+            }
+        }
+        else if(flag == 2){
+            cout<<"Enter the Username of the Librarian which you want to delete :"<<endl;
+            getline(cin, str);
+            cout<<"\n\n";
+
+            for(int i=0;i<LibrarianList.size();i++){
+                if(LibrarianList[i].UserName == str){
+                    LibrarianList.erase(LibrarianList.begin()+i);
+                    found = 1;
+                    break;
+                }
+            }
+        }
+        else if(flag==3){
+            cout<<"Aborted!\n\n";
+            return;
+        }
+
+        if(found){
+            cout<<"Librarian has been deleted!\n"<<endl;
+            cout<<"\n\n";
+            return;
+        }
+        else{
+            cout<<"Librarian not found, please recheck the entered value!\n\n";
         }
         cout<<"=======================================================================\n\n";
     }
@@ -350,5 +419,23 @@ void UserDb::AddStudent(){
 
     student.Fine = 0;
     student.calc = time(0);
+    
+}
+
+void UserDb::AddLibrarian(){   
+    Librarian Librarian;
+    string str;
+
+    cout<<"Enter the Name of the Librarian:"<<endl;
+    getline(cin, Librarian.Name);
+
+    cout<<"Enter the UserName of the Librarian:"<<endl;
+    getline(cin, Librarian.UserName);
+
+    cout<<"Enter the Password of the Librarian:"<<endl;
+    getline(cin, Librarian.Password);
+
+    Librarian.Fine = 0;
+    Librarian.calc = time(0);
     
 }
