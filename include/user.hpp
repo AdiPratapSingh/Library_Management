@@ -6,20 +6,24 @@
 using namespace std;
 
 class UserDb{
-    vector<Student> StudentList;
-    vector<Professor> ProfessorList;
-    vector<Librarian> LibrarianList;
+    public:
+        vector<Student> StudentList;
+        vector<Professor> ProfessorList;
+        vector<Librarian> LibrarianList;
 
-    void FindStudent();        // Done
-    void FindProfessor();      // Done
+        void FindStudent();        // Done
+        int FindStudent(string UserName);
 
-    void DeleteStudent();      // Done
-    void DeleteProfessor();    // Done
-    void DeleteLibrarian();    // Done
+        void FindProfessor();      // Done
+        int FindProfessor(string UserName);
 
-    void AddStudent();         // Done
-    void AddProfessor();       // Done
-    void AddLibrarian();       // Done
+        void DeleteStudent();      // Done
+        void DeleteProfessor();    // Done
+        void DeleteLibrarian();    // Done
+
+        void AddStudent();         // Done
+        void AddProfessor();       // Done
+        void AddLibrarian();       // Done
 };
 
 class User{

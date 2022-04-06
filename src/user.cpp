@@ -35,6 +35,7 @@ void Professor::Clear_fine_amount(){
     Fine = 0;
 }
 
+// interactive
 void UserDb::FindStudent(){
     int flag,found;
     found = 0;
@@ -51,8 +52,6 @@ void UserDb::FindStudent(){
         }
         if(flag == 1){
             cout<<"Enter the name of the Student\n"<<endl;
-            
-            cout<<"\n\n";
 
             getline(cin, str);
 
@@ -120,6 +119,18 @@ void UserDb::FindStudent(){
         }
         cout<<"=======================================================================\n\n\n";
     }
+}
+
+// via username non interactive
+int UserDb::FindStudent(string str){
+    int flag,found;
+    found = 0;
+    for(int i=0;i<StudentList.size();i++){
+        if(StudentList[i].UserName == str){
+            return i;
+        }
+    }
+    return -1;
 }
 
 
@@ -207,6 +218,18 @@ void UserDb::FindProfessor(){
         }
         cout<<"=======================================================================\n\n\n";
     }
+}
+
+// via username non interactive
+int UserDb::FindProfessor(string str){
+    int flag,found;
+    found = 0;
+    for(int i=0;i<ProfessorList.size();i++){
+        if(ProfessorList[i].UserName == str){
+            return i;
+        }
+    }
+    return -1;
 }
 
 void UserDb::DeleteStudent(){   
@@ -402,6 +425,8 @@ void UserDb::AddProfessor(){
     prof.Fine = 0;
     prof.calc = time(0);
 
+    ProfessorList.push_back(prof);
+
 }
 
 void UserDb::AddStudent(){   
@@ -420,6 +445,7 @@ void UserDb::AddStudent(){
     student.Fine = 0;
     student.calc = time(0);
     
+    StudentList.push_back(student);
 }
 
 void UserDb::AddLibrarian(){   

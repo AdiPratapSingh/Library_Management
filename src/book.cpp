@@ -143,9 +143,9 @@ void BookDb::Search(){
                 if(list[i].ISBN == str){
 
                     cout<<"The book has been found!"<<endl;
-                    cout<<"||              Title              ||          Author            ||          Publication            ||          ISBN            ||";
-                    cout<<"=================================================================================================================================";
-                    cout<<"||  "<<list[i].Title<<"  ||  "<<list[i].Author<<"  ||  "<<list[i].Publication<<"  ||  "<<list[i].ISBN<<"  ||";
+                    cout<<"||              Title              ||          Author            ||          Publication            ||          ISBN            ||\n";
+                    cout<<"=================================================================================================================================\n";
+                    cout<<"||  "<<list[i].Title<<"  ||  "<<list[i].Author<<"  ||  "<<list[i].Publication<<"  ||  "<<list[i].ISBN<<"  ||\n";
                     found = 1;
                     cout<<"\n\n";
                     break;
@@ -164,4 +164,17 @@ void BookDb::Search(){
         }
         cout<<"=======================================================================\n\n\n";
     }
+}
+
+void BookDb::List(){
+    cout<<"||              Title              ||          Author            ||          Publication            ||          ISBN            ||";
+    cout<<"=================================================================================================================================";
+    for(int i=0;i<list.size();i++)
+    cout<<"||  "<<list[i].Title<<"  ||  "<<list[i].Author<<"  ||  "<<list[i].Publication<<"  ||  "<<list[i].ISBN<<"  ||\n";
+    cout<<"==================================================================================================================================\n\n\n";
+    return;              
+}
+
+void BookDb::Issue(string BookName, string UserName){
+    
 }

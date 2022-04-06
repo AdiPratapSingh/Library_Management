@@ -19,7 +19,9 @@ class Book{
 class BookDb{
     public:
         vector<Book> list; 
-        void Add(); // Done
-        void Delete(); // Done
-        void Search(); // Done
+        void Add();        // Done
+        void Delete();     // Done
+        void Search();     // Done
+        void List();       // Done
+        void Issue(string BookName, string UserName); 
 };
