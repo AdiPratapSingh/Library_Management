@@ -1,3 +1,4 @@
+#pragma once
 #include <bits/stdc++.h>
 #include <ctime>
 #include <chrono>
@@ -20,8 +21,13 @@ class BookDb{
     public:
         vector<Book> list; 
         void Add();        // Done
+        int Add(Book book);
+
         void Delete();     // Done
+
         void Search();     // Done
+        int Search(string BookName); // Dine
+
         void List();       // Done
-        void Issue(string BookName, string UserName); 
+        Book*Issue(); 
 };
