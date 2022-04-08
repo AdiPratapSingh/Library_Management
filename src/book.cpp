@@ -6,9 +6,13 @@
 
 using namespace std;
 
+string convertToString(char* a){
+    string s(a);
+    return s;
+}
+
 void Book::Show_duedate(){
     if(isBooked){
-        system("CLS");
         cout<<"The duedate for the book is "; // -----
     }
     else{
@@ -37,22 +41,22 @@ Book::Book(){
 
 void BookDb::Add(){
     Book book;
-    system("CLS");
+    
     cout<<"Enter the Title of the Book"<<endl;
-    // getline(cin, book.Title);
-    cin>>book.Title;
+    cin.ignore();
+    getline(cin, book.Title);
 
     cout<<"Enter the Author of the Book"<<endl;
-    // getline(cin, book.Author);
-    cin>>book.Author;
+    cin.ignore();
+    getline(cin,book.Author);
 
     cout<<"Enter the ISBN of the Book"<<endl;
-    // getline(cin, book.ISBN);
-    cin>>book.ISBN;
+    cin.ignore();
+    getline(cin,book.ISBN);
 
     cout<<"Enter the Publication of the Book"<<endl;
-    // getline(cin, book.Publication);
-    cin>>book.Publication;
+    cin.ignore();
+    getline(cin,book.Publication);
 
     list.push_back(book);
     return;
@@ -69,21 +73,24 @@ void BookDb::Delete(){
     string str;
 
     while(!found){
-        system("CLS");
         cout<<"Press 1 if you want to delete using Title of the book.\nPress 2 if you want to delete using ISBN.\nPress 3 if you want to abort the process\n"<<endl;
-        cin>>flag;
+        cin>>str;
+        flag = str[0] - '0';
         cout<<"\n\n";
 
         while(flag!=1&&flag!=2&&flag!=3){
             cout<<"Please provide a valid input : ";
-            cin>>flag;
+            cin>>str;
+            flag = str[0] - '0';
             cout<<"\n\n";
         }
 
         if(flag == 1){
             cout<<"Enter the Title of the Book which you want to delete :"<<endl;
-            // getline(cin, str);
-            cin>>str;
+            // cin.ignore();
+            // cin>>str;
+            cin.ignore();
+            getline(cin,str);
             cout<<"\n\n";
 
             for(int i=0;i<list.size();i++){
@@ -97,7 +104,10 @@ void BookDb::Delete(){
         else if(flag == 2){
             cout<<"Enter the ISBN of the Book which you want to delete :"<<endl;
             // getline(cin, str);
-            cin>>str;
+            // cin.ignore();
+            // cin>>str;
+            cin.ignore();
+            getline(cin,str);
             cout<<"\n\n";
 
             for(int i=0;i<list.size();i++){
@@ -131,19 +141,23 @@ void BookDb::Search(){
 
     while(!found){
         cout<<"Press 1 if you want to search using Title of the book.\nPress 2 if you want to search using ISBN.\nPress 3 if you want to abort the process\n"<<endl;
-        cin>>flag;
+        cin>>str;
+        flag = str[0] - '0';
         
         cout<<"\n\n";
 
         while(flag!=1&&flag!=2&&flag!=3){
             cout<<"Please provide a valid input : ";
-            cin>>flag;
+            cin>>str;
+            flag = str[0] - '0';
         }
 
         if(flag == 1){
             cout<<"Enter the Title of the Book which you want to search :"<<endl;
-            // getline(cin, str);
-            cin>>str;
+            // cin.ignore();
+            // cin>>str;
+            cin.ignore();
+            getline(cin,str);
             cout<<"\n\n";
 
             for(int i=0;i<list.size();i++){
@@ -151,9 +165,9 @@ void BookDb::Search(){
 
                     cout<<"The book has been found!"<<endl;
                     cout<<"\n";
-                    cout<<"||              Title              ||          Author            ||          Publication            ||          ISBN            ||";
+                    cout<<"||              Title              ||          Author            ||          Publication            ||          ISBN            ||\n";
                     cout<<"=================================================================================================================================";
-                    cout<<"||  "<<list[i].Title<<"  ||  "<<list[i].Author<<"  ||  "<<list[i].Publication<<"  ||  "<<list[i].ISBN<<"  ||";
+                    cout<<"||  "<<list[i].Title<<"  ||  "<<list[i].Author<<"  ||  "<<list[i].Publication<<"  ||  "<<list[i].ISBN<<"  ||\n";
                     found = 1;
                     cout<<"\n\n";
                     break;
@@ -162,8 +176,10 @@ void BookDb::Search(){
         }
         else if(flag == 2){
             cout<<"Enter the ISBN of the Book which you want to delete :"<<endl;
-            // getline(cin, str);
-            cin>>str;
+            // cin.ignore();
+            // cin>>str;
+            cin.ignore();
+            getline(cin,str);
 
             for(int i=0;i<list.size();i++){
                 if(list[i].ISBN == str){
@@ -201,8 +217,8 @@ int BookDb::Search(string BookName){
 }
 
 void BookDb::List(){
-    cout<<"||              Title              ||          Author            ||          Publication            ||          ISBN            ||";
-    cout<<"=================================================================================================================================";
+    cout<<"||              Title              ||          Author            ||          Publication            ||          ISBN            ||\n";
+    cout<<"==================================================================================================================================\n";
     for(int i=0;i<list.size();i++)
     cout<<"||  "<<list[i].Title<<"  ||  "<<list[i].Author<<"  ||  "<<list[i].Publication<<"  ||  "<<list[i].ISBN<<"  ||\n";
     cout<<"==================================================================================================================================\n\n\n";
@@ -216,38 +232,45 @@ Book*BookDb::Issue(){
 
     while(!found){
         cout<<"Press 1 if you want to issue using Title of the book.\nPress 2 if you want to issue using ISBN.\nPress 3 if you want to abort the process\n"<<endl;
-        cin>>flag;
+        cin>>str;
+        flag = str[0] - '0';
         
         cout<<"\n\n";
 
         while(flag!=1&&flag!=2&&flag!=3){
             cout<<"Please provide a valid input : ";
-            cin>>flag;
+            cin>>str;
+            flag = str[0] - '0';
         }
 
         if(flag == 1){
             cout<<"Enter the Title of the Book which you want to issue :"<<endl;
-            // getline(cin, str);
-            cin>>str;
+            // string bookname, bookname2;
+            cin.ignore();
+            getline(cin,str);
             cout<<"\n\n";
+            // cout<<bookname<<" "<<bookname2<<"\n";
 
             for(int i=0;i<list.size();i++){
+                cout<<list[i].Title<<" "<<str<<"\n";
                 if(list[i].Title == str){
 
                     cout<<"The book has been found!"<<endl;
                     cout<<"\n";
                     cout<<"||              Title              ||          Author            ||          Publication            ||          ISBN            ||\n";
-                    cout<<"=================================================================================================================================";
+                    cout<<"=================================================================================================================================\n";
                     cout<<"||  "<<list[i].Title<<"  ||  "<<list[i].Author<<"  ||  "<<list[i].Publication<<"  ||  "<<list[i].ISBN<<"  ||\n";
                     found = 1;
+                    cout<<list[i].isBooked<<"\n";
                     if(list[i].isBooked == true){
                         cout<<"Unfortunately, the book has been held by someone else\n\n";
                         return NULL;
                     }
                     else{
-                        cout<<"The book has been issued!";
+                        cout<<"The book has been issued!\n";
                     }
                     list[i].isBooked = true;
+                    cout<<"------------"<<list[i].isBooked<<"\n";
                     cout<<"\n\n";
                     return &list[i];
                 }
@@ -255,8 +278,11 @@ Book*BookDb::Issue(){
         }
         else if(flag == 2){
             cout<<"Enter the ISBN of the Book which you want to issue :"<<endl;
+            cin.ignore();
+            getline(cin,str);
             // getline(cin, str);
-            cin>>str;
+            // cin.ignore();
+            // cin>>str;
 
             for(int i=0;i<list.size();i++){
                 if(list[i].ISBN == str){

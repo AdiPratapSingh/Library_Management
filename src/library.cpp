@@ -1,3 +1,4 @@
+#include <fstream>
 #include <bits/stdc++.h>
 #include <user.hpp>
 #include <book.hpp>
@@ -5,17 +6,99 @@
 
 using namespace std;
 
+// string convertToString(char* a){
+//     string s(a);
+//     return s;
+// }
+
 int main(){
     UserDb database;
     BookDb bookdatabase;
     int running = 1;
+    string z;
+
+    char p;
+    std::cout<<"Do you want to populate the Database from the contents in textfile [y/n] :";
+    cin>>p;
+    if(p=='y'){
+        vector<string> lines;
+        string line;
+
+        ifstream input_file1("../Database/books.txt");
+        ifstream input_file2("../Database/user.txt");
+
+        if (!input_file1.is_open()) {
+            cerr << "Could not open the file - '"
+                << "Database/books.txt" << "'" << endl;
+        }
+        if (!input_file2.is_open()) {
+            cerr << "Could not open the file - '"
+                << "Database/user.txt" << "'" << endl;
+        }
+
+        while (getline(input_file1, line)){
+            lines.push_back(line);
+        }
+
+        for (int i=0;i<lines.size();i=i+5){
+            Book book;
+            book.Title = lines[i];
+            book.Author = lines[i+1];
+            book.ISBN = lines[i+2];
+            book.Publication = lines[i+3];
+            bookdatabase.list.push_back(book);
+        }
+    
+        lines.clear();
+
+        while (getline(input_file2, line)){
+            lines.push_back(line);
+        }
+
+        for (int i=0;i<lines.size();i=i+5){
+            int role = (lines[i])[0] - '0'; 
+            switch(role){
+                case 1:{
+                    Student student;
+                    student.Name = lines[i+1];
+                    student.UserName = lines[i+2];
+                    student.Password = lines[i+3];
+                    student.Fine = 0;
+                    database.StudentList.push_back(student);
+                    break;
+                }
+                case 2:{
+                    Professor professor;
+                    professor.Name = lines[i+1];
+                    professor.UserName = lines[i+2];
+                    professor.Password = lines[i+3];
+                    professor.Fine = 0;
+                    database.ProfessorList.push_back(professor);
+                    break;
+                }
+                case 3:{
+                    Librarian librarian;
+                    librarian.Name = lines[i+1];
+                    librarian.UserName = lines[i+2];
+                    librarian.Password = lines[i+3];
+                    librarian.Fine = 0;
+                    database.LibrarianList.push_back(librarian);
+                    break;
+                }
+            }
+        }
+
+        input_file1.close();
+        input_file2.close();
+    }
 
     while(running){
         int mode = -1;
 
         while (mode!= 1&&mode != 2){
             cout<<"What do you want to do? Sign In[1] /Register[2] : ";
-            cin>>mode;
+            cin>>z;
+            mode = z[0] - '0';
             cout<<"\n";
             if(mode!=1&&mode!=2){
                 cout<<"Please give a valid input\n";
@@ -32,7 +115,8 @@ int main(){
 
                     while (role!= 1&&role != 2&&role != 3){
                         cout<<"Whith which role you want to sign in? Student[1]/Professor[2]/Librarian[3] : ";
-                        cin>>role;
+                        cin>>z;
+                        role = z[0] - '0';
                         cout<<"\n";
                         if(role!=1&&role!=2&&role!=3){
                             cout<<"Please give a valid input\n";
@@ -40,16 +124,16 @@ int main(){
                     }
 
                     cout<<"Username : ";
-                    // getline(cin, UserName);
+                    cin.ignore();
                     cin>>UserName;
 
                     cout<<"Password : ";
-                    // getline(cin, UserPassword);
+                    cin.ignore();
                     cin>>UserPassword;
 
                     switch(role){
                         case 1:{                 // Student
-                            cout<<database.StudentList.size()<<"\n";
+                            // cout<<database.StudentList.size()<<"\n";
                             int StudentIndex = database.FindStudent(UserName);
                             if(StudentIndex == -1||database.StudentList[StudentIndex].Password!=UserPassword){
                                 cout<<"Credentials dont match! Please try again\n";
@@ -68,7 +152,8 @@ int main(){
                                         printf("- Get Dues                   [4]\n");
                                         printf("- Log Out                    [5]\n");
                                         printf("Enter the correpsonding number to choose :");
-                                        cin>>state;
+                                        cin>>z;
+                                        state = z[0] - '0';
                                         if(state <1 || state > 5 ){
                                             cout<<"Please provide a valid input";
                                         }
@@ -88,7 +173,7 @@ int main(){
                                             break;
                                         }        
                                         case 4:{       // Student Get Dues
-                                            cout<<"Your current Dues are : ₹ "<<database.StudentList[StudentIndex].Fine;
+                                            cout<<"Your current Dues are : ₹ "<<database.StudentList[StudentIndex].Fine<<"\n\n";
                                             break;
                                         }
                                         case 5:{       // Student Log Out
@@ -108,9 +193,9 @@ int main(){
                                 continue;
                             }
                             else{
-                                int LoggedIn = 1;
+                                LoggedIn = 1;
                                 cout<<"Welcome "<<database.ProfessorList[ProfessorIndex].Name<<"\n\n";
-                                while(LoggedIn){
+                                while(LoggedIn==1){
                                     int state = -1;
                                     while(state <1 || state > 5 ){   
                                         printf("What do you want to do?\n");
@@ -120,7 +205,9 @@ int main(){
                                         printf("- Get Dues                   [4]\n");
                                         printf("- Log Out                    [5]\n");
                                         printf("Enter the correpsonding number to choose :");
-                                        cin>>state;
+
+                                        cin>>z;
+                                        state = z[0] - '0';
                                         if(state <1 || state > 5 ){
                                             cout<<"Please provide a valid input";
                                         }
@@ -159,9 +246,9 @@ int main(){
                                 continue;
                             }
                             else{
-                                int LoggedIn = 1;
+                                LoggedIn = 1;
                                 cout<<"Welcome "<<database.LibrarianList[LibrarianIndex].Name<<"\n\n";
-                                while(LoggedIn){
+                                while(LoggedIn == 1){
                                     int state = -1;
                                     while(state <1 || state > 8 ){   
                                         printf("What do you want to do?\n");
@@ -174,7 +261,9 @@ int main(){
                                         printf("- Log Out                    [7]\n");
                                         printf("- Add User                   [8]\n");
                                         printf("Enter the correpsonding number to choose :");
-                                        cin>>state;
+                                        cin>>z;
+                                        state = z[0] - '0';
+                                        cout<<"\n";
                                         if(state <1 || state > 8 ){
                                             cout<<"Please provide a valid input";
                                         }
@@ -190,9 +279,9 @@ int main(){
                                             cout<<"- Student                     [1]\n";
                                             cout<<"- Professor                   [2]\n";
                                             cout<<"- Librarian                   [3]\n";
-                                            int c;
-                                            cin>>c;
-                                            switch(c){
+
+                                            cin>>z;
+                                            switch(z[0] - '0'){
                                                 case 1:{
                                                     cout<<"||              Name              ||          Username            ||\n";
                                                     cout<<"===================================================================\n";
@@ -220,6 +309,9 @@ int main(){
                                                     }
                                                     break;
                                                 }
+                                                default:{
+                                                    cout<<"Please give a valid input\n";
+                                                }
                                             }
                                             break;
                                         }
@@ -242,15 +334,15 @@ int main(){
                                             cout<<"- Student                     [1]\n";
                                             cout<<"- Professor                   [2]\n";
                                             cout<<"- Librarian                   [3]\n";
-                                            int c;
-                                            cin>>c;
-                                            switch(c){
+                                            
+                                            cin>>z;
+                                            switch(z[0]-'0'){
                                                 case 1:{
                                                     database.FindStudent();
                                                     break;
                                                 }
                                                 case 2:{
-                                                    database.FindLibrarian();
+                                                    database.FindProfessor();
                                                     break;
                                                 }
                                                 case 3:{
@@ -266,9 +358,9 @@ int main(){
                                             cout<<"- Student                     [1]\n";
                                             cout<<"- Professor                   [2]\n";
                                             cout<<"- Librarian                   [3]\n";
-                                            int c;
-                                            cin>>c;
-                                            switch(c){
+                                            
+                                            cin>>z;
+                                            switch(z[0]-'0'){
                                                 case 1:{
                                                     database.DeleteStudent();
                                                     break;
@@ -296,9 +388,9 @@ int main(){
                                             cout<<"- Student                     [1]\n";
                                             cout<<"- Professor                   [2]\n";
                                             cout<<"- Librarian                   [3]\n";
-                                            int c;
-                                            cin>>c;
-                                            switch(c){
+                                            
+                                            cin>>z;
+                                            switch(z[0]-'0'){
                                                 case 1:{
                                                     database.AddStudent();
                                                     break;
@@ -332,7 +424,9 @@ int main(){
 
                 while (role!= 1&&role != 2&&role != 3){
                     cout<<"Whith which role you want to Sign Up? Student[1]/Professor[2]/Librarian[3] : ";
-                    cin>>role;
+                    
+                    cin>>z;
+                    role = z[0] - '0';
                     cout<<"\n";
                     if(role!=1&&role!=2&&role!=3){
                         cout<<"Please give a valid input\n";
@@ -340,12 +434,15 @@ int main(){
                 }
 
                 cout<<"Username : ";
+                cin.ignore();
                 cin>>UserName;
 
                 cout<<"Password : ";
+                cin.ignore();
                 cin>>UserPassword;
 
                 cout<<"Name : ";
+                cin.ignore();
                 cin>>name;
                 cout<<"\n";
 

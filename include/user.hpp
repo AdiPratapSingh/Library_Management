@@ -20,8 +20,8 @@ class Student:public User{
     public:
         int Calculate_fine(time_t t);        // Done 
         void Clear_fine_amount();            // Done
-        void Issue(BookDb database);
-        Book* Return(BookDb database);
+        void Issue(BookDb &database);
+        Book* Return(BookDb &database);
 };
 
 class Professor:public User{
@@ -29,8 +29,8 @@ class Professor:public User{
         int Calculate_fine(time_t t);        // Done
         void Clear_fine_amount();            // Done
         // void Issue();
-        void Issue(BookDb database);
-        Book* Return(BookDb database);
+        void Issue(BookDb &database);
+        Book* Return(BookDb &database);
 };
 
 class Librarian:public User{

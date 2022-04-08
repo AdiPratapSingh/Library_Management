@@ -44,26 +44,32 @@ void UserDb::FindStudent(){
 
     while(!found){
         cout<<"Press 1 if you want to search using Name of the Student.\nPress 2 if you want to Search using Username.\nPress 3 if you want to abort the process\n"<<endl;
-        cin>>flag;
+        cin>>str;
+        flag = str[0] - '0';
 
         while(flag!=1&&flag!=2&&flag!=3){
             cout<<"Please provide a valid input : ";
-            cin>>flag;
+            cin>>str;
+            system("clear");
+            flag = str[0] - '0';
             cout<<"\n\n";
         }
         if(flag == 1){
-            cout<<"Enter the name of the Student\n"<<endl;
-
-            // getline(cin, str);
-            cin>>str;
+            
+            cout<<"Enter the name of the Student"<<endl;
+            // cin.ignore();
+            // cin>>str;
+            cin.ignore();
+            getline(cin,str);
+            system("clear");
 
             for(int i=0;i<StudentList.size();i++){
                 if(StudentList[i].Name == str){
 
-                    cout<<"The book has been found!"<<endl;
-                    cout<<"||              Name              ||          Username            ||          Fine Ammount            ||\n";
+                    cout<<"The Student has been found!"<<endl;
+                    cout<<"||           Name            ||          Username            ||          Fine Ammount            ||\n";
                     cout<<"========================================================================================================\n";
-                    cout<<"||  "<<StudentList[i].Name <<"  ||  "<<StudentList[i].UserName<<" ||"<<StudentList[i].Calculate_fine(time(0))<<" ||\n";
+                    cout<<"||   "<<StudentList[i].Name <<"   || "<<StudentList[i].UserName<<"   ||"<<StudentList[i].Calculate_fine(time(0))<<"  ||\n";
                     cout<<"====================================================================\n\n";
                     cout<<"                        List of books issued\n\n";
                     cout<<"||          Book Name             ||          Due Date            ||\n";
@@ -82,14 +88,14 @@ void UserDb::FindStudent(){
         else if(flag == 2){
             cout<<"Enter the Username of the Student\n"<<endl;
             
-            // getline(cin, str);
-            cin>>str;
+            cin.ignore();
+            getline(cin,str);
             cout<<"\n\n";
 
             for(int i=0;i<StudentList.size();i++){
                 if(StudentList[i].UserName == str){
 
-                    cout<<"The book has been found!"<<endl;
+                    cout<<"The Student has been found!"<<endl;
                     cout<<"||              Name              ||          Username            ||       Current Fine        ||\n";
                     cout<<"=================================================================================================\n";
                     
@@ -148,24 +154,26 @@ void UserDb::FindProfessor(){
 
     while(!found){
         cout<<"Press 1 if you want to search using Name of the Professor.\nPress 2 if you want to Search using Username.\nPress 3 if you want to abort the process\n"<<endl;
-        cin>>flag;
+        cin>>str;
+        flag = str[0] - '0';
 
         while(flag!=1&&flag!=2&&flag!=3){
             cout<<"Please provide a valid input : ";
-            cin>>flag;
+            cin>>str;
+            flag = str[1] - '0';
             cout<<"\n\n";
         }
         if(flag == 1){
             cout<<"Enter the name of the Professor\n"<<endl;
             
             cout<<"\n\n";
-            // getline(cin, str);
-            cin>>str;
+            cin.ignore();
+            getline(cin,str);
 
             for(int i=0;i<ProfessorList.size();i++){
                 if(ProfessorList[i].Name == str){
 
-                    cout<<"The book has been found!"<<endl;
+                    cout<<"The Professor has been found!"<<endl;
                     cout<<"||              Name              ||          Username            ||          Fine Ammount            ||\n";
                     cout<<"========================================================================================================\n";
                     cout<<"||  "<<ProfessorList[i].Name <<"  ||  "<<ProfessorList[i].UserName<<" ||"<<ProfessorList[i].Calculate_fine(time(0))<<" ||\n";
@@ -185,16 +193,16 @@ void UserDb::FindProfessor(){
             }
         }
         else if(flag == 2){
-            cout<<"Enter the Username of the Pro\n"<<endl;
+            cout<<"Enter the Username of the Professor\n"<<endl;
             
-            // getline(cin, str);
-            cin>>str;
+            cin.ignore();
+            getline(cin,str);
             cout<<"\n\n";
 
             for(int i=0;i<ProfessorList.size();i++){
                 if(ProfessorList[i].UserName == str){
 
-                    cout<<"The book has been found!"<<endl;
+                    cout<<"The Professor has been found!"<<endl;
                     cout<<"||              Name              ||          Username            ||       Current Fine        ||\n";
                     cout<<"=================================================================================================\n";
                     
@@ -248,19 +256,21 @@ void UserDb::FindLibrarian(){
 
     while(!found){
         cout<<"Press 1 if you want to search using Name of the Librarian.\nPress 2 if you want to Search using Username.\nPress 3 if you want to abort the process\n"<<endl;
-        cin>>flag;
+        cin>>str;
+        flag = str[0] - '0';
 
         while(flag!=1&&flag!=2&&flag!=3){
             cout<<"Please provide a valid input : ";
-            cin>>flag;
+            cin>>str;
+            flag = str[0] - '0';
             cout<<"\n\n";
         }
         if(flag == 1){
             cout<<"Enter the name of the Librarian\n"<<endl;
             
             cout<<"\n\n";
-            // getline(cin, str);
-            cin>>str;
+            cin.ignore();
+            getline(cin,str);
 
             for(int i=0;i<LibrarianList.size();i++){
                 if(LibrarianList[i].Name == str){
@@ -279,25 +289,25 @@ void UserDb::FindLibrarian(){
         else if(flag == 2){
             cout<<"Enter the Username of the Librarian\n"<<endl;
             
-            // getline(cin, str);
-            cin>>str;
+            cin.ignore();
+            getline(cin,str);
             cout<<"\n\n";
 
             for(int i=0;i<LibrarianList.size();i++){
                 if(LibrarianList[i].UserName == str){
 
-                    cout<<"The book has been found!"<<endl;
+                    cout<<"The Librarian has been found!"<<endl;
                     cout<<"||              Name              ||          Username            ||\n";
                     cout<<"====================================================================\n";
                     
-                    cout<<"||  "<<LibrarianList[i].Name <<"  ||  "<<LibrarianList[i].UserName<<" || "<<" ||\n";
+                    cout<<"||  "<<LibrarianList[i].Name <<"  ||  "<<LibrarianList[i].UserName<<"||\n";
                     cout<<"=================================================================================================\n\n";
                     cout<<"                        List of books issued\n\n";
                     cout<<"||          Book Name             ||          Due Date            ||\n";
                     cout<<"====================================================================\n";
                     for(int j=0;j<LibrarianList[i].list.size();j++){
                         char*due = ctime(&(LibrarianList[i].list[j].first.duedate));
-                        cout<<"|| "<<LibrarianList[i].list[j].first.Title<<" || "<<due<<" ||\n";
+                        cout<<"|| "<<LibrarianList[i].list[j].first.Title<<" || "<<due;
                     }
                     cout<<"====================================================================\n";
                     found = 1;
@@ -341,19 +351,22 @@ void UserDb::DeleteStudent(){
 
     while(!found){
         cout<<"Press 1 if you want to delete using name of the Student.\nPress 2 if you want to delete using Username of Student.\nPress 3 if you want to abort the process"<<endl;
-        cin>>flag;
+        
+        cin>>str;
+        flag = str[0] - '0';
         cout<<"\n\n";
 
         while(flag!=1&&flag!=2&&flag!=3){
             cout<<"Please provide a valid input : ";
-            cin>>flag;
+            cin>>str;
+            flag = str[0] - '0';
             cout<<"\n\n";
         }
 
         if(flag == 1){
             cout<<"Enter the Name of the Student which you want to delete :"<<endl;
-            // getline(cin, str);
-            cin>>str;
+            cin.ignore();
+            getline(cin,str);
 
             cout<<"\n\n";
 
@@ -367,8 +380,8 @@ void UserDb::DeleteStudent(){
         }
         else if(flag == 2){
             cout<<"Enter the Username of the Student which you want to delete :"<<endl;
-            // getline(cin, str);
-            cin>>str;
+            cin.ignore();
+            getline(cin,str);
 
             cout<<"\n\n";
 
@@ -404,20 +417,23 @@ void UserDb::DeleteProfessor(){
 
     while(!found){
         cout<<"Press 1 if you want to delete using name of the Professor.\nPress 2 if you want to delete using Username of Professor.\nPress 3 if you want to abort the process"<<endl;
-        cin>>flag;
+        
+        cin>>str;
+        flag = str[0] - '0';
         cout<<"\n\n";
 
         while(flag!=1&&flag!=2&&flag!=3){
             cout<<"Please provide a valid input : ";
-            cin>>flag;
+            cin>>str;
+            flag = str[0] - '0';
             cout<<"\n\n";
         }
 
         if(flag == 1){
             cout<<"Enter the Name of the Professor who you want to delete :"<<endl;
-            // getline(cin, str);
+            cin.ignore();
 
-            cin>>str;
+            getline(cin,str);
             cout<<"\n\n";
 
             for(int i=0;i<ProfessorList.size();i++){
@@ -430,8 +446,8 @@ void UserDb::DeleteProfessor(){
         }
         else if(flag == 2){
             cout<<"Enter the Username of the Professor which you want to delete :"<<endl;
-            // getline(cin, str);
-            cin>>str;
+            cin.ignore();
+            getline(cin,str);
 
             cout<<"\n\n";
 
@@ -467,19 +483,21 @@ void UserDb::DeleteLibrarian(){
 
     while(!found){
         cout<<"Press 1 if you want to delete using name of the Librarian.\nPress 2 if you want to delete using Username of Librarian.\nPress 3 if you want to abort the process"<<endl;
-        cin>>flag;
+        cin>>str;
+        flag = str[0] - '0';
         cout<<"\n\n";
 
         while(flag!=1&&flag!=2&&flag!=3){
             cout<<"Please provide a valid input : ";
-            cin>>flag;
+            cin>>str;
+            flag = str[0] - '0';
             cout<<"\n\n";
         }
 
         if(flag == 1){
             cout<<"Enter the Name of the Librarian who you want to delete :"<<endl;
-            // getline(cin, str);
-            cin>>str;
+            cin.ignore();
+            getline(cin,str);
 
             cout<<"\n\n";
 
@@ -493,8 +511,8 @@ void UserDb::DeleteLibrarian(){
         }
         else if(flag == 2){
             cout<<"Enter the Username of the Librarian which you want to delete :"<<endl;
-            // getline(cin, str);
-            cin>>str;
+            cin.ignore();
+            getline(cin,str);
             cout<<"\n\n";
 
             for(int i=0;i<LibrarianList.size();i++){
@@ -527,16 +545,16 @@ void UserDb::AddProfessor(){
     string str;
 
     cout<<"Enter the Name of the Professor:"<<endl;
-    // getline(cin, prof.Name);
-    cin>>prof.Name;
+    cin.ignore();
+    getline(cin,prof.Name);
 
     cout<<"Enter the UserName of the Professor:"<<endl;
-    // getline(cin, prof.UserName);
-    cin>>prof.UserName;
+    cin.ignore();
+    getline(cin,prof.UserName);
 
     cout<<"Enter the Password of the Professor:"<<endl;
-    // getline(cin, prof.Password);
-    cin>>prof.Password;
+    cin.ignore();
+    getline(cin,prof.Password);
 
     prof.Fine = 0;
     prof.calc = time(0);
@@ -550,16 +568,16 @@ void UserDb::AddStudent(){
     string str;
 
     cout<<"Enter the Name of the Student:"<<endl;
-    cin>>student.Name;
-    // getline(cin, student.Name);
+    cin.ignore();
+    getline(cin,student.Name);
 
     cout<<"Enter the UserName of the Student:"<<endl;
-    // getline(cin, student.UserName);
-    cin>>student.UserName;
+    cin.ignore();
+    getline(cin,student.UserName);
 
     cout<<"Enter the Password of the Student:"<<endl;
-    // getline(cin, student.Password);
-    cin>>student.Password;
+    cin.ignore();
+    getline(cin,student.Password);
 
     student.Fine = 0;
     student.calc = time(0);
@@ -572,16 +590,16 @@ void UserDb::AddLibrarian(){
     string str;
 
     cout<<"Enter the Name of the Librarian:"<<endl;
-    cin>>Librarian.Name;
-    // getline(cin, Librarian.Name);
+    cin.ignore();
+    getline(cin,Librarian.Name);
 
     cout<<"Enter the UserName of the Librarian:"<<endl;
-    // getline(cin, Librarian.UserName);
-    cin>>Librarian.UserName;
+    cin.ignore();
+    getline(cin,Librarian.UserName);
 
     cout<<"Enter the Password of the Librarian:"<<endl;
-    // getline(cin, Librarian.Password);
-    cin>>Librarian.Password;
+    cin.ignore();
+    getline(cin,Librarian.Password);
 
     Librarian.Fine = 0;
     Librarian.calc = time(0);
@@ -589,7 +607,7 @@ void UserDb::AddLibrarian(){
     LibrarianList.push_back(Librarian);
 }
 
-void Student::Issue(BookDb database){
+void Student::Issue(BookDb &database){
     if(list.size()>5){
         cout<<"No more books can be issued. Return the \npreviously issued books to issue a new book\n";
         return;
@@ -603,7 +621,7 @@ void Student::Issue(BookDb database){
     cout<<"Please return before "<<dt<<"\n";
     list.push_back({*book,book->duedate});
 }
-void Professor::Issue(BookDb database){
+void Professor::Issue(BookDb &database){
 
     Book*book = database.Issue();
     if(book==NULL) return;
@@ -614,26 +632,28 @@ void Professor::Issue(BookDb database){
     list.push_back({*book,book->duedate});
 }
 
-Book*Student::Return(BookDb database){
+Book*Student::Return(BookDb &database){
     int flag,found;
     found = 0;
     string str;
 
     while(!found){
         cout<<"Press 1 if you want to return using Title of the book.\nPress 2 if you want to return using ISBN.\nPress 3 if you want to abort the process\n"<<endl;
-        cin>>flag;
+        cin>>str;
+        flag = str[0] - '0';
         
         cout<<"\n\n";
 
         while(flag!=1&&flag!=2&&flag!=3){
             cout<<"Please provide a valid input : ";
-            cin>>flag;
+            cin>>str;
+            flag = str[0] - '0';
         }
 
         if(flag == 1){
             cout<<"Enter the Title of the Book which you want to return :"<<endl;
-            // getline(cin, str);4
-            cin>>str;
+            cin.ignore();
+            getline(cin,str);
             cout<<"\n\n";
 
             for(int i=0;i<database.list.size();i++){
@@ -641,27 +661,35 @@ Book*Student::Return(BookDb database){
 
                     cout<<"The book has been found!"<<endl;
                     cout<<"\n";
-                    cout<<"||              Title              ||          Author            ||          Publication            ||          ISBN            ||";
-                    cout<<"=================================================================================================================================";
-                    cout<<"||  "<<database.list[i].Title<<"  ||  "<<database.list[i].Author<<"  ||  "<<database.list[i].Publication<<"  ||  "<<database.list[i].ISBN<<"  ||";
+                    cout<<"||              Title              ||          Author            ||          Publication            ||          ISBN            ||\n";
+                    cout<<"=================================================================================================================================\n";
+                    cout<<"||  "<<database.list[i].Title<<"  ||  "<<database.list[i].Author<<"  ||  "<<database.list[i].Publication<<"  ||  "<<database.list[i].ISBN<<"  ||\n";
                     found = 1;
                     
+                    
                     this->Calculate_fine(time(0));
-                    for(int j=0;j<list.size();i++){
+                    int check = 1;
+                    for(int j=0;j<list.size();j++){
                         if(database.list[i].Title == list[j].first.Title){
-                            list.erase(list.begin()+i);
+                            check = 0;
+                            list.erase(list.begin()+j);
+                            database.list[i].isBooked = false;
+                            cout<<"The book has been returned\n";
                         }
                     }
                     cout<<"\n\n";
-                    database.list[i].isBooked = false;
+                    if(check){
+                        cout<<"This book was not issued to you. We don't need a strange book!\n";
+                        return NULL;
+                    }
                     return &database.list[i];
                 }
             }
         }
         else if(flag == 2){
             cout<<"Enter the ISBN of the Book which you want to return :"<<endl;
-            // getline(cin, str);
-            cin>>str;
+            cin.ignore();
+            getline(cin,str);
 
             for(int i=0;i<list.size();i++){
                 if(database.list[i].ISBN == str){
@@ -672,14 +700,22 @@ Book*Student::Return(BookDb database){
                     cout<<"||  "<<database.list[i].Title<<"  ||  "<<database.list[i].Author<<"  ||  "<<database.list[i].Publication<<"  ||  "<<database.list[i].ISBN<<"  ||\n";
                     found = 1;
                     
-                    database.list[i].isBooked = false;
+                    
                     this->Calculate_fine(time(0));
-                    for(int j=0;j<list.size();i++){
+                    int check = 1;
+                    for(int j=0;j<list.size();j++){
                         if(database.list[i].Title == list[j].first.Title){
+                            check = 0;
                             list.erase(list.begin()+i);
+                            database.list[i].isBooked = false;
+                            cout<<"The book has been returned\n";
                         }
                     }
                     cout<<"\n\n";
+                    if(check){
+                        cout<<"This book was not issued to you. We don't need a strange book!";
+                        return NULL;
+                    }
                     return &database.list[i];
                 }
             }
@@ -696,26 +732,28 @@ Book*Student::Return(BookDb database){
     }
 }
 
-Book*Professor::Return(BookDb database){
+Book*Professor::Return(BookDb &database){
     int flag,found;
     found = 0;
     string str;
 
     while(!found){
         cout<<"Press 1 if you want to return using Title of the book.\nPress 2 if you want to return using ISBN.\nPress 3 if you want to abort the process\n"<<endl;
-        cin>>flag;
+        cin>>str;
+        flag = str[0] - '0';
         
         cout<<"\n\n";
 
         while(flag!=1&&flag!=2&&flag!=3){
             cout<<"Please provide a valid input : ";
-            cin>>flag;
+            cin>>str;
+            flag = str[0] - '0';
         }
 
         if(flag == 1){
             cout<<"Enter the Title of the Book which you want to return :"<<endl;
-            // getline(cin, str);
-            cin>>str;
+            cin.ignore();
+            getline(cin,str);
             cout<<"\n\n";
 
             for(int i=0;i<database.list.size();i++){
@@ -723,27 +761,34 @@ Book*Professor::Return(BookDb database){
 
                     cout<<"The book has been found!"<<endl;
                     cout<<"\n";
-                    cout<<"||              Title              ||          Author            ||          Publication            ||          ISBN            ||";
-                    cout<<"=================================================================================================================================";
-                    cout<<"||  "<<database.list[i].Title<<"  ||  "<<database.list[i].Author<<"  ||  "<<database.list[i].Publication<<"  ||  "<<database.list[i].ISBN<<"  ||";
+                    cout<<"||              Title              ||          Author            ||          Publication            ||          ISBN            ||\n";
+                    cout<<"=================================================================================================================================\n";
+                    cout<<"||  "<<database.list[i].Title<<"  ||  "<<database.list[i].Author<<"  ||  "<<database.list[i].Publication<<"  ||  "<<database.list[i].ISBN<<"  ||\n\n";
                     found = 1;
                     
+                    int check = 1;
                     this->Calculate_fine(time(0));
                     for(int j=0;j<list.size();i++){
                         if(database.list[i].Title == list[j].first.Title){
                             list.erase(list.begin()+i);
+                            cout<<"The book has been returned\n";
+                            check = 0;
+                            database.list[i].isBooked = false;
                         }
                     }
+                    if(check){
+                        cout<<"This book was not issued to you. We don't need a strange book!\n";
+                        return NULL;
+                    }
                     cout<<"\n\n";
-                    database.list[i].isBooked = false;
                     return &database.list[i];
                 }
             }
         }
         else if(flag == 2){
             cout<<"Enter the ISBN of the Book which you want to return :"<<endl;
-            // getline(cin, str);
-            cin>>str;
+            cin.ignore();
+            getline(cin,str);
 
             for(int i=0;i<list.size();i++){
                 if(database.list[i].ISBN == str){
@@ -754,14 +799,21 @@ Book*Professor::Return(BookDb database){
                     cout<<"||  "<<database.list[i].Title<<"  ||  "<<database.list[i].Author<<"  ||  "<<database.list[i].Publication<<"  ||  "<<database.list[i].ISBN<<"  ||\n";
                     found = 1;
                     
-                    database.list[i].isBooked = false;
+                    int check = 1;
                     this->Calculate_fine(time(0));
                     for(int j=0;j<list.size();i++){
                         if(database.list[i].Title == list[j].first.Title){
                             list.erase(list.begin()+i);
+                            cout<<"The book has been returned\n";
+                            database.list[i].isBooked = false;
+                            check = 0;
                         }
                     }
                     cout<<"\n\n";
+                    if(check){
+                        cout<<"This book was not issued to you. We don't need a strange book!\n";
+                        return NULL;
+                    }
                     return &database.list[i];
                 }
             }
