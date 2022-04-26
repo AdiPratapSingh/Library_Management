@@ -19,4 +19,4 @@ Finally we get the ELF file as teststudent
 ```
 ./teststudent
 ```
-Messages are stated while running the project. In order to populate the database I have read the data from the text files present in Database folder.
+Messages are stated while running the project. In order to populate the database, I have read the data from the text files present in Database folder.
